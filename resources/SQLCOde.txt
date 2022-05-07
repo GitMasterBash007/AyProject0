@@ -54,7 +54,7 @@ public interface Genericable<T> {
     // Update
     public boolean update(T updatedObj);
 
-    //Delete
+    //Delete44444
     boolean delete(String id);
 
 }
