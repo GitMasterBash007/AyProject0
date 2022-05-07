@@ -1,0 +1,61 @@
+-- creating a schema for my first project
+create schema Ay_project0;
+
+
+
+-- creating a bank's customers table
+create table bank_customers (
+	fname varchar(50),
+	lname varchar(50),
+	email varchar(25) primary key,
+	"password" varchar(25) not null,
+    age int check (age >= 18)
+);
+
+
+
+
+-- creating a table for the acount informations for our customer
+create table account_info (
+	id serial primary key,
+	account_type varchar(50),
+	balance numeric not null,
+    open_date varchar(15) not null,
+    user_email varchar(25) not null unique
+);
+
+
+
+
+
+-- connecting both table though the forign key
+alter table account_info
+add constraint fk_user_email
+foreign key(user_email) references bank_customers(email);
+
+
+crudable
+
+package com.revature.bankingProject.daos;
+
+import java.io.IOException;
+
+public interface Genericable<T> {
+
+
+
+    // Create
+    T create(T newObject);
+
+    // Read
+    T[] findAll() throws IOException;
+    T findById(String id);
+
+    // Update
+    public boolean update(T updatedObj);
+
+    //Delete
+    boolean delete(String id);
+
+}
+
